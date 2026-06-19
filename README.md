@@ -24,7 +24,7 @@ evaluated both globally and within lesion ROI using segmentation masks.
 | **Non-Local Means** | **31.47** | 0.827 | **31.52** | 0.842 |
 | DnCNN | 31.24 | **0.847** | 31.17 | **0.860** |
 
-![benchmark results](images/bargraph_dncnn.png)
+![benchmark results](bargraph_dncnn.png)
 
 ## Key Findings
 
@@ -45,5 +45,5 @@ caution; averaging across multiple seeds would give a more robust estimate.
 **4. Single-image results can mislead** — on individual images NLM sometimes outperforms
 DnCNN; only at dataset scale do consistent patterns emerge.
 
-![sample outputs](images/sample_outs_dncnn.png)
+![sample outputs](sample_outs_dncnn.png)
 
