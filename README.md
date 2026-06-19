@@ -1,5 +1,3 @@
-<img width="1956" height="1181" alt="sample_outs" src="https://github.com/user-attachments/assets/e477dffa-a4c7-4c58-b58f-66b55acd46c8" />
-<img width="1389" height="495" alt="bargraphs" src="https://github.com/user-attachments/assets/45c9a3e4-691a-4034-a583-7f26eb5ce11f" />
 # Speckle Reduction Benchmark on BUSI Dataset
 
 Comparison of classical denoising methods on breast ultrasound images,
