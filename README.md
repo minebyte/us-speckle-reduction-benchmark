@@ -13,32 +13,32 @@ evaluated both globally and within lesion ROI using segmentation masks.
 - Median Filter
 - Gaussian Filter
 
+
 ## Results
 
 | Method | PSNR Global | SSIM Global | PSNR ROI | SSIM ROI |
 |---|---|---|---|---|
-| Noisy | 26.25 | 0.649 | 26.35 | 0.681 |
-| Non-Local Means | **31.47** | 0.827 | **31.51** | 0.842 |
+| Noisy | 26.25 | 0.649 | 26.34 | 0.681 |
 | Median Filter | 29.71 | 0.810 | 29.32 | 0.811 |
-| Gaussian Filter | 29.99 | **0.836** | 29.76 | 0.833 |
+| Gaussian Filter | 29.99 | 0.836 | 29.76 | 0.833 |
+| **Non-Local Means** | **31.47** | 0.827 | **31.52** | 0.842 |
+| DnCNN | 31.24 | **0.847** | 31.17 | **0.860** |
 
-## Key Finding
+## Key Findings
 
-Global metrics alone can be misleading in medical imaging context:
-- **NLM** performs consistently across global and ROI evaluation — robust to lesion boundaries
-- **Median filter** shows notable PSNR drop in ROI (29.71 → 29.32), indicating edge blurring at lesion boundaries — clinically relevant degradation
-- **Gaussian filter** shows similar but milder ROI degradation
+**1. NLM and DnCNN are close competitors, with different strengths** — NLM achieves
+marginally higher PSNR, while DnCNN leads in SSIM, suggesting better structural detail
+preservation despite slightly lower pixel-level fidelity.
 
-ROI-based evaluation is more clinically meaningful than global metrics alone.
+**2. Global metrics can be misleading** — Median filter scores well globally (29.71 dB)
+but drops within lesion ROI (29.32 dB), indicating edge blurring at lesion boundaries.
+ROI-based evaluation is more clinically meaningful.
 
-## Visualizations
+**3. Training is sensitive to initialization** — DnCNN results varied across training
+runs (PSNR range ~31.2-31.7 dB) depending on random seed and learning rate schedule.
+This run used a reduced learning rate (1e-4) with step decay after an initial plateau
+at 1e-3 — a reminder that single-run DL benchmarks should be interpreted with some
+caution; averaging across multiple seeds would give a more robust estimate.
 
-![benchmark](benchmark_results.png)
-![global vs roi](global_vs_roi.png)
-
-## Next
-- Deep learning approaches: DnCNN, U-Net
-- Realistic correlated speckle noise model
-
-## Stack
-Python · OpenCV · scikit-image · NumPy · Matplotlib
+**4. Single-image results can mislead** — on individual images NLM sometimes outperforms
+DnCNN; only at dataset scale do consistent patterns emerge.
